@@ -13,4 +13,22 @@ public class HelloController {
         log.info("hello security");
         return "hello security";
     }
+
+    @RequestMapping("/successForwardUrl.html")
+    public String successForwardUrl(){
+        log.info("hello successForwardUrl");
+        return "hello successForwardUrl";
+    }
+
+    @RequestMapping("/defaultSuccessUrl.html")
+    public String defaultSuccessUrl(){
+        log.info("hello defaultSuccessUrl");
+        return "hello defaultSuccessUrl";
+    }
+
+    @RequestMapping("/failureUrl.html")
+    public String failureUrl(){
+        log.info("hello failureUrl");
+        return "hello failureUrl";
+    }
 }
