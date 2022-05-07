@@ -10,6 +10,7 @@
     <modules>
         <module>web</module>
         <module>spring-security</module>
+        <module>Quartz</module>
     </modules>
     <packaging>pom</packaging>
 
