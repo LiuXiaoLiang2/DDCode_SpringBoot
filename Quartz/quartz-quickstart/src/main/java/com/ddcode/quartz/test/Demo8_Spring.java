@@ -7,7 +7,7 @@ import org.quartz.impl.StdSchedulerFactory;
 
 import java.util.concurrent.TimeUnit;
 
-public class Demo7_Spring {
+public class Demo8_Spring {
 
     /**
      * 定时器的简单入门
