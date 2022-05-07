@@ -1,19 +1,19 @@
 package com.ddcode.quartz.test;
 
 import com.ddcode.quartz.job.HelloJob;
+import com.ddcode.quartz.job.HelloJobData;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
 
 import java.util.concurrent.TimeUnit;
 
-import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
-
-public class Demo1 {
+public class Demo6 {
 
     /**
      * 定时器的简单入门
      * 一个调度器，一个触发器，一个jobDetail
-     *
+     * 使用 Cron
+     * 通过JobData传递业务参数【在 jobDetail 中使用JobData】
      * @param args
      */
     public static void main(String[] args) throws SchedulerException, InterruptedException {
@@ -25,24 +25,32 @@ public class Demo1 {
 
         //创建任务组
         //创建的时候,传入实现了Job接口的自定义类HelloJob
-        JobDetail jobDetail = JobBuilder.newJob(HelloJob.class).withIdentity("job1", "group1").build();
+        //一个name和group可以确定唯一的一个jobDetail
+        JobDetail jobDetail = JobBuilder.newJob(HelloJobData.class)
+                //使用useJobData传递参数
+                .usingJobData("job-data-key","job-data-value1")
+                .withIdentity("job1", "group1").build();
 
+        //一个name和group可以确定唯一的一个trigger
         //创建触发器
         //需要传入执行策略,也就是后续的cron表达式
-        SimpleTrigger trigger = TriggerBuilder.newTrigger().withIdentity("trigger1", "group1")
+        //使用了CronScheduleBuilder后就使用Trigger对象接收
+        Trigger trigger = TriggerBuilder.newTrigger().withIdentity("trigger1", "group1")
                 .startNow()
-                //执行策略: 每5s执行, 永远执行
+                //创建cron策略对象
                 .withSchedule(
-                        simpleSchedule().withIntervalInSeconds(5).repeatForever()
+                        //每秒执行1次
+                        CronScheduleBuilder.cronSchedule("* * * * * ? *")
                 ).build();
+
 
         //由调度器执行定时任务
         //传入任务job和触发器
         scheduler.scheduleJob(jobDetail, trigger);
         //休眠20s
-        TimeUnit.SECONDS.sleep(20);
+        TimeUnit.SECONDS.sleep(3);
 
-        //关闭调度器,一旦关闭调度器,整个进程就关了,所以要休眠一会,查看执行效果
+        //关闭调度器
         scheduler.shutdown();
     }
 }

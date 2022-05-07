@@ -8,12 +8,12 @@ import java.util.concurrent.TimeUnit;
 
 import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
 
-public class Demo1 {
+public class Demo5 {
 
     /**
      * 定时器的简单入门
      * 一个调度器，一个触发器，一个jobDetail
-     *
+     * 使用 Cron
      * @param args
      */
     public static void main(String[] args) throws SchedulerException, InterruptedException {
@@ -29,11 +29,11 @@ public class Demo1 {
 
         //创建触发器
         //需要传入执行策略,也就是后续的cron表达式
-        SimpleTrigger trigger = TriggerBuilder.newTrigger().withIdentity("trigger1", "group1")
+        Trigger trigger = TriggerBuilder.newTrigger().withIdentity("trigger1", "group1")
                 .startNow()
                 //执行策略: 每5s执行, 永远执行
                 .withSchedule(
-                        simpleSchedule().withIntervalInSeconds(5).repeatForever()
+                      CronScheduleBuilder.cronSchedule("* * * * * ? *")
                 ).build();
 
         //由调度器执行定时任务

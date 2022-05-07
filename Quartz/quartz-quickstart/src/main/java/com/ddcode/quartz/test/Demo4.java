@@ -8,12 +8,12 @@ import java.util.concurrent.TimeUnit;
 
 import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
 
-public class Demo1 {
+public class Demo4 {
 
     /**
      * 定时器的简单入门
-     * 一个调度器，一个触发器，一个jobDetail
-     *
+     * 将触发器和JobDetai放在调度器的另外一种方法
+     * 
      * @param args
      */
     public static void main(String[] args) throws SchedulerException, InterruptedException {
@@ -25,24 +25,31 @@ public class Demo1 {
 
         //创建任务组
         //创建的时候,传入实现了Job接口的自定义类HelloJob
-        JobDetail jobDetail = JobBuilder.newJob(HelloJob.class).withIdentity("job1", "group1").build();
+        JobDetail jobDetail = JobBuilder.newJob(HelloJob.class)
+                //将任务组持久化
+                .storeDurably()
+                .withIdentity("job1", "group1").build();
 
         //创建触发器
         //需要传入执行策略,也就是后续的cron表达式
         SimpleTrigger trigger = TriggerBuilder.newTrigger().withIdentity("trigger1", "group1")
+                .forJob("job1", "group1")
                 .startNow()
                 //执行策略: 每5s执行, 永远执行
                 .withSchedule(
-                        simpleSchedule().withIntervalInSeconds(5).repeatForever()
+                        simpleSchedule().withIntervalInSeconds(3).repeatForever()
                 ).build();
 
         //由调度器执行定时任务
         //传入任务job和触发器
-        scheduler.scheduleJob(jobDetail, trigger);
+        //将已经持久化的任务组放在调度器中, 第二个参数:是否替换之前同样的jobDetail(), name和group一样的
+        scheduler.addJob(jobDetail, true);
+        //将已经使用forJob指定了jobDetail的触发器放在调度器中
+        scheduler.scheduleJob(trigger);
         //休眠20s
         TimeUnit.SECONDS.sleep(20);
 
-        //关闭调度器,一旦关闭调度器,整个进程就关了,所以要休眠一会,查看执行效果
+        //关闭调度器
         scheduler.shutdown();
     }
 }
