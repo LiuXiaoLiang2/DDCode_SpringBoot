@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
 
-public class Demo5 {
+public class Demo5_cron {
 
     /**
      * 定时器的简单入门

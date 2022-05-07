@@ -8,11 +8,11 @@ import java.util.concurrent.TimeUnit;
 
 import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
 
-public class Demo4 {
+public class Demo4_other_method {
 
     /**
      * 定时器的简单入门
-     * 将触发器和JobDetai放在调度器的另外一种方法
+     * 将触发器和JobDetail放在调度器的另外一种方法
      * 
      * @param args
      */
