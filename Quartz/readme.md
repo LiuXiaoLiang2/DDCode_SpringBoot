@@ -20,3 +20,8 @@
 3、一个JobDetail可以被多个触发器指定  
 4、一个Job中可以有多个JobDetail  
 
+
+## quartz-springboot
+
+整合SpringBoot 
+
