@@ -5,6 +5,11 @@
     <title>登录</title>
 </head>
 <body>
+<!-- 默认就是从request中获取数据 -->
+<!--<h2 th:text="${SPRING_SECURITY_LAST_EXCEPTION}"></h2>-->
+<!-- 从session中获取数据 -->
+<div>session中获取失败信息</div>
+<h2 th:text="${session.SPRING_SECURITY_LAST_EXCEPTION}"></h2>
 <h1>用户登录</h1>
 <form method="post" th:action="@{/doLogin}">
     用户名:<input name="uname" type="text"/><br>

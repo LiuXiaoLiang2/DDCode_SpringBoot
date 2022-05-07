@@ -3,6 +3,9 @@ package com.ddcode.security.config;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.util.matcher.AndRequestMatcher;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.OrRequestMatcher;
 
 /**
  * 自定义资源路径
@@ -33,7 +36,26 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .usernameParameter("uname")
                 .passwordParameter("passwd")
                 //.successForwardUrl("/successForwardUrl.html") //认证称成功后，跳转到指定的路径, 注意路径不会发生变化
-                .defaultSuccessUrl("/defaultSuccessUrl.html", true);
+                //.defaultSuccessUrl("/defaultSuccessUrl.html", true)
+                .successHandler(new MyAuthenticationSuccessHandler()) // 前后端分离, 响应给前端json
+                //.failureForwardUrl("/login.html") //失败跳转请求, 还是跳转到登录页面, 失败信息存储到 request 中
+                //.failureUrl("/login.html")   //失败跳转请求, 还是重定向到登录页面, 失败信息存储到 session 中
+                .failureHandler(new MyAuthenticationFailureHandler()) // 当登录失败,前后端分离, 响应给前端json
+                .and()
+                .logout()      //开启注销登录
+                //.logoutUrl("/logout") //指定退出登录请求地址，默认是 GET 请求，路径为 `/logout` , 注意要想使用默认的, 这个地址必须是 logout, 同时必须是get请求
+                .logoutRequestMatcher(
+                     new OrRequestMatcher(
+                             new AntPathRequestMatcher("/aa","POST"), // post 请求 路径 /aa ，也可以完成注销操作
+                             new AntPathRequestMatcher("/logout","GET")
+                     )
+                )
+                .invalidateHttpSession(true) //退出时是否是 session 失效，默认值为 true
+                .clearAuthentication(true) //退出时是否清除认证信息，默认值为 true
+                //.logoutSuccessUrl("/login.html") //退出登录时跳转地址
+                .logoutSuccessHandler(new MyLogoutSuccessHandler())  // 前后端分离, 注销后 返回json
+                .and().csrf().disable();//这里先关闭 CSRF
+                ;
     }
 
 }
