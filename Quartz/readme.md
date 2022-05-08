@@ -25,3 +25,10 @@
 
 整合SpringBoot 
 
+## quartz-jdbc
+
+quartz持久化：和业务库整合在一起的  
+
+## quartz-jdbc-independent
+quartz持久化：单独的quartz库  
+
