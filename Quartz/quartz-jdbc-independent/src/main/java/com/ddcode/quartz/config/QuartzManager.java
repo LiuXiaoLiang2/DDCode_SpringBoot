@@ -57,7 +57,7 @@ public class QuartzManager {
     }
 
     /**
-     * 珊瑚任务
+     * 删除任务
      * @param name
      * @param group
      * @return
@@ -74,7 +74,7 @@ public class QuartzManager {
     }
 
     /**
-     * 暂定任务
+     * 暂停任务
      * @param name
      * @param group
      */
