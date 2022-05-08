@@ -41,4 +41,10 @@ public class QuartzController {
         quartzManager.resumeJob("orderJob", "orderJobGroup");
         return "ok";
     }
+
+    @RequestMapping("/run")
+    public String run(){
+        quartzManager.run("orderJob", "orderJobGroup");
+        return "ok";
+    }
 }

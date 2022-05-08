@@ -103,6 +103,21 @@ public class QuartzManager {
         }
     }
 
+    /**
+     * 立即执行一次
+     * @param name
+     * @param group
+     */
+    public void run(String name, String group) {
+        Scheduler scheduler = schedulerFactoryBean.getScheduler();
+        JobKey jobKey = JobKey.jobKey(name, group);
+        try {
+            scheduler.triggerJob(jobKey);
+        } catch (SchedulerException e) {
+            e.printStackTrace();
+        }
+    }
+
     public boolean removeJob(String name) {
         Scheduler scheduler = schedulerFactoryBean.getScheduler();
         JobKey jobKey = JobKey.jobKey(name);
