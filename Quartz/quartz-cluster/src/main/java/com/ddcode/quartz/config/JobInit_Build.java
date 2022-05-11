@@ -29,12 +29,6 @@ public class JobInit_Build {
     }
 
 
-    /**
-     * 执行任务
-     * @param jobDetailName
-     * @param triggerName
-     * @throws SchedulerException
-     */
     public void startJob(String jobDetailName, String triggerName) throws SchedulerException {
         log.info("执行 JobInit_Build, jobDetailName {} , triggerName {}", jobDetailName, triggerName);
         //创建jobDetail

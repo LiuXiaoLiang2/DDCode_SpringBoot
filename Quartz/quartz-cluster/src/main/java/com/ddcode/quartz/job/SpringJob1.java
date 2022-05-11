@@ -22,13 +22,16 @@ public class SpringJob1 extends QuartzJobBean {
     private HelloService helloService;
 
 
-
     @Override
     protected void executeInternal(JobExecutionContext context) throws JobExecutionException {
         //执行具体业务代码
         try {
+            //集群名称
+            String schedulerName = context.getScheduler().getSchedulerName();
+            //每个集群中节点实例ID
+            String schedulerInstanceId = context.getScheduler().getSchedulerInstanceId();
             log.info("执行定时任务 HelloJob currentThread {} jobDetailName {}, triggerName {}, schedulerName {}, schedulerInstanceId {}", Thread.currentThread().getName(),
-                    context.getJobDetail().getKey().getName(), context.getTrigger().getKey().getName(), context.getScheduler().getSchedulerName(), context.getScheduler().getSchedulerInstanceId());
+                    context.getJobDetail().getKey().getName(), context.getTrigger().getKey().getName(), schedulerName, schedulerInstanceId);
         } catch (SchedulerException e) {
             e.printStackTrace();
         }
