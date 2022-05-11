@@ -16,9 +16,11 @@ public class UserController {
 
     @RequestMapping("/getUserInfo")
     public String getUserInfo() {
+        //获取User对象
         Authentication authentication = SecurityContextHolder
                 .getContext().getAuthentication();
         User principal = (User) authentication.getPrincipal();
+
         log.info("User :"+ principal);
         log.info("身份 :"+principal.getUsername());
         log.info("凭证 :"+authentication.getCredentials());

@@ -16,6 +16,7 @@
         <module>quartz-springboot</module>
         <module>quartz-jdbc</module>
         <module>quartz-jdbc-independent</module>
+        <module>quartz-cluster</module>
     </modules>
 
     <dependencies>

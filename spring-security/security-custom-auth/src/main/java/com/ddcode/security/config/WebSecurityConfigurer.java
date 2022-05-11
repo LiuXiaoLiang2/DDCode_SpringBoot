@@ -1,8 +1,16 @@
 package com.ddcode.security.config;
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.util.matcher.AndRequestMatcher;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.OrRequestMatcher;
@@ -11,6 +19,7 @@ import org.springframework.security.web.util.matcher.OrRequestMatcher;
  * 自定义资源路径
  */
 @Configuration
+@Slf4j
 public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     /**
@@ -58,4 +67,36 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 ;
     }
 
+    /**
+     * 配置认证管理器, 也是 继承 WebSecurityConfigurerAdapter
+     */
+
+    /**
+     * 全局配置
+     * 传入的参数就是一个构造器
+     * @param builder
+     */
+    @Autowired
+    public void initialize(AuthenticationManagerBuilder builder) throws Exception {
+        //builder..
+        InMemoryUserDetailsManager inMemoryUserDetailsManager
+                = new InMemoryUserDetailsManager();
+        UserDetails u1 = User.withUsername("zhangsan")
+                .password("{noop}111").roles("USER").build();
+        inMemoryUserDetailsManager.createUser(u1);
+        builder.userDetailsService(inMemoryUserDetailsManager);
+        log.info("全局配置 builder {}", builder);
+    }
+
+
+    /**
+     * 自定义的配置
+     * 重写 WebSecurityConfigurerAdapter 的config方法
+     * @param builder
+     * @throws Exception
+     */
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder builder) throws Exception {
+//        log.info("自定义配置 builder {}", builder);
+//    }
 }

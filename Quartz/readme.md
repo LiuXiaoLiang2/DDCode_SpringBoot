@@ -32,3 +32,6 @@ quartz持久化：和业务库整合在一起的
 ## quartz-jdbc-independent
 quartz持久化：单独的quartz库  
 
+
+## quartz-cluster
+quartz实现集群  
