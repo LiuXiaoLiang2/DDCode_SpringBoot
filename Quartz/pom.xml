@@ -17,6 +17,8 @@
         <module>quartz-jdbc</module>
         <module>quartz-jdbc-independent</module>
         <module>quartz-cluster</module>
+        <module>quartz-distributed-user</module>
+        <module>quartz-distributed-order</module>
     </modules>
 
     <dependencies>

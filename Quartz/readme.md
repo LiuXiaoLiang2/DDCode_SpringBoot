@@ -35,3 +35,9 @@ quartz持久化：单独的quartz库
 
 ## quartz-cluster
 quartz实现集群  
+
+## quartz-distributed
+quartz实现分布式  
+quartz-distributed-user: 用户模块  
+quartz-distributed-order: 订单模块  
+目的：不同模块公用一个quartz库，看看任务是否隔离
