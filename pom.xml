@@ -11,6 +11,7 @@
         <module>web</module>
         <module>spring-security</module>
         <module>Quartz</module>
+        <module>NewFeatures</module>
     </modules>
     <packaging>pom</packaging>
 
