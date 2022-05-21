@@ -15,6 +15,7 @@
         <module>Lambda</module>
         <module>InterfacePlus</module>
         <module>MethodReference</module>
+        <module>Stream</module>
     </modules>
 
     <dependencies>

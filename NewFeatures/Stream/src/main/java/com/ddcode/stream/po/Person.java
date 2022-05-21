@@ -1,4 +1,4 @@
-package com.ddcode.lambda.po;
+package com.ddcode.stream.po;
 
 import lombok.Builder;
 import lombok.Data;
@@ -8,20 +8,19 @@ import java.util.Objects;
 @Data
 @Builder
 public class Person {
-    public String name;
-    public Integer age;
+    private Integer age;
+    private String name;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return name.equals(person.name) &&
-                age.equals(person.age);
+        return Objects.equals(age, person.age);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, age);
+        return Objects.hash(age);
     }
 }
