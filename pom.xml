@@ -12,6 +12,7 @@
         <module>spring-security</module>
         <module>Quartz</module>
         <module>NewFeatures</module>
+        <module>MongoDB</module>
     </modules>
     <packaging>pom</packaging>
 
