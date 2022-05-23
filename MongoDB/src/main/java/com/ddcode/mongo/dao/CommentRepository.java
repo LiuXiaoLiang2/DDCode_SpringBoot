@@ -14,5 +14,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CommentRepository extends MongoRepository<Comment, String> {
 
+    /**
+     * 分页查询，注意方法名一定是按照参数来定义的，不能随便写
+     * @param parentId
+     * @param pageable
+     * @return
+     */
     public Page<Comment> findByParentId(String parentId, Pageable pageable);
 }

@@ -98,7 +98,7 @@ public class CommentController {
 
     @RequestMapping("/addLikeNum")
     public String addLikeNum(){
-        commentService.addLikeNum("628989db3fc1c53c0e5a753f");
+        commentService.addLikeNum("1");
         return "ok";
     }
 }
