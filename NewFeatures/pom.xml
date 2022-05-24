@@ -16,6 +16,7 @@
         <module>InterfacePlus</module>
         <module>MethodReference</module>
         <module>Stream</module>
+        <module>Date</module>
     </modules>
 
     <dependencies>
