@@ -13,6 +13,8 @@
         <module>Quartz</module>
         <module>NewFeatures</module>
         <module>MongoDB</module>
+        <module>JavaProcess</module>
+        <module>RocketMQ</module>
     </modules>
     <packaging>pom</packaging>
 
