@@ -2,6 +2,9 @@ package com.ddcode.java.thread;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * 使用线程的 yield() 方法: 让出CPU使用权
+ */
 @Slf4j(topic = "c.yield")
 public class Demo_5_yield {
     public static void main(String[] args) {

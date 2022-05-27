@@ -4,6 +4,9 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * 使用线程的sleep方法
+ */
 @Slf4j(topic = "c.sleep")
 public class Demo_4_Sleep {
     public static void main(String[] args) {

@@ -2,10 +2,18 @@ package com.ddcode.java.thread;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.concurrent.locks.LockSupport;
+
+import static java.lang.Thread.sleep;
+
+/**
+ * 设置线程的优先级
+ */
 @Slf4j(topic = "c.Priority")
 public class Demo_6_Priority {
     public static void main(String[] args) {
-        priority();
+//        priority();
+        test4();
     }
 
     public static void priority(){
@@ -35,5 +43,23 @@ public class Demo_6_Priority {
         thread1.setPriority(Thread.MAX_PRIORITY);
         //设置thread2最低优先级
         thread2.setPriority(Thread.MIN_PRIORITY);
+    }
+
+
+    private static void test4() {
+        Thread t1 = new Thread(() -> {
+            for (int i = 0; i < 5; i++) {
+                log.debug("park...");
+                LockSupport.park();
+                log.debug("打断状态：{}", Thread.interrupted());
+            }
+        });
+        t1.start();
+        try {
+            sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        t1.interrupt();
     }
 }
