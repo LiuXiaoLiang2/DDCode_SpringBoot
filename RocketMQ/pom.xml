@@ -12,7 +12,6 @@
     <artifactId>RocketMQ</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>Java-RocketMQ</module>
     </modules>
 
 
