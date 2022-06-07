@@ -12,6 +12,8 @@
     <artifactId>RocketMQ</artifactId>
     <packaging>pom</packaging>
     <modules>
+        <module>Java-RocketMQ</module>
+        <module>SpringBoot-RocketMQ-QuickStart</module>
     </modules>
 
 
