@@ -3,6 +3,9 @@ package com.ddcode.rocketmq.controller;
 import com.ddcode.rocketmq.message.*;
 import com.ddcode.rocketmq.po.OrderPay;
 import com.ddcode.rocketmq.producer.OrderProducer;
+import com.ddcode.rocketmq.producer.OrderSqlProducer;
+import com.ddcode.rocketmq.producer.OrderTagProducer;
+import com.ddcode.rocketmq.producer.OrderTransProducer;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -109,6 +112,31 @@ public class OrderController {
             }
         }.start();
 
+        return "ok";
+    }
+
+    @Resource
+    private OrderTransProducer orderTransProducer;
+    @RequestMapping("/sendTrans")
+    public String sendTrans(Integer id){
+        OrderTranMessage message = OrderTranMessage.builder().id(id).msg("苹果").build();
+        orderTransProducer.sendTrans(message);
+        return "ok";
+    }
+
+    @Resource
+    private OrderTagProducer orderTagProducer;
+    @RequestMapping("/sendSyncTag")
+    public String sendTrans(){
+        orderTagProducer.sendSyncTag();
+        return "ok";
+    }
+
+    @Resource
+    private OrderSqlProducer sendSyncSql;
+    @RequestMapping("/sendSyncSql")
+    public String sendSyncSql(){
+        sendSyncSql.sendSyncSql();
         return "ok";
     }
 
