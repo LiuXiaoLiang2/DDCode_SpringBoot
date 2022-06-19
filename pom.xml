@@ -15,6 +15,7 @@
         <module>MongoDB</module>
         <module>JavaProcess</module>
         <module>RocketMQ</module>
+        <module>ShardingJdbc</module>
     </modules>
     <packaging>pom</packaging>
 
