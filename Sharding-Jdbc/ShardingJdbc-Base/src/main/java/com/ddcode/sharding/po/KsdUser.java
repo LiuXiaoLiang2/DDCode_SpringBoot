@@ -9,11 +9,12 @@ import lombok.Data;
 @Builder
 public class KsdUser {
     //使用数据库的主键自增
-    @TableId(type = IdType.AUTO)
-    private Integer id;
+    //@TableId(type = IdType.AUTO)
+    private Long id;
     private String nickname;
     private String password;
-    private String sex;
+    private Integer sex;
     private String birthday;
+    private Integer age;
 
 }
