@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>ShardingJdbc-Base</module>
+        <module>ShardingJdbc-Plus</module>
     </modules>
 
     <dependencies>
@@ -61,16 +62,11 @@
             <version>3.5.1</version>
         </dependency>
 
-        <!--依赖sharding-->
+
         <dependency>
-            <groupId>org.apache.shardingsphere</groupId>
-            <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
-            <version>4.0.0-RC1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.shardingsphere</groupId>
-            <artifactId>sharding-core-common</artifactId>
-            <version>4.0.0-RC1</version>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.1.22</version>
         </dependency>
     </dependencies>
 
