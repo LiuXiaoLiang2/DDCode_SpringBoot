@@ -16,6 +16,7 @@
         <module>JavaProcess</module>
         <module>RocketMQ</module>
         <module>Sharding-Jdbc</module>
+        <module>ElasticSearch</module>
     </modules>
     <packaging>pom</packaging>
 
