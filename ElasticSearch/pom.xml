@@ -14,6 +14,7 @@
     <modules>
         <module>Java-ES</module>
         <module>SpringBoot-RestClient-ES</module>
+        <module>SpringBoot-ES-Data</module>
     </modules>
 
 
