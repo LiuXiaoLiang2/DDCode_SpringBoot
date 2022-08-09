@@ -17,6 +17,8 @@
         <module>RocketMQ</module>
         <module>Sharding-Jdbc</module>
         <module>ElasticSearch</module>
+        <module>Distributed_Lock</module>
+        <module>Distributed-Lock</module>
     </modules>
     <packaging>pom</packaging>
 
