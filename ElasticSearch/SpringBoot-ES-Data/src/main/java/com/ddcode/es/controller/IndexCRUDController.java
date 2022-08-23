@@ -1,6 +1,5 @@
 package com.ddcode.es.controller;
 
-import com.ddcode.es.dao.UserDao;
 import com.ddcode.es.po.User;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.client.RequestOptions;
@@ -12,7 +11,6 @@ import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.reindex.BulkByScrollResponse;
 import org.elasticsearch.index.reindex.UpdateByQueryRequest;
 import org.elasticsearch.script.Script;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 import org.springframework.data.elasticsearch.core.IndexedObjectInformation;
 import org.springframework.data.elasticsearch.core.SearchHit;
@@ -30,9 +28,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+
+/**
+ * 操作索引
+ */
+
 @RestController
 @Slf4j
-public class UserRestTemplateController {
+public class IndexCRUDController {
 
 
 

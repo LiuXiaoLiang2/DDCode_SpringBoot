@@ -10,10 +10,14 @@ import javax.annotation.Resource;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * 操作文档
+ */
+
 @RestController
 @RequestMapping("/es/dao")
 @Slf4j
-public class UserDaoController {
+public class DocumentCRUDController {
 
     @Resource
     private UserDao userDao;
