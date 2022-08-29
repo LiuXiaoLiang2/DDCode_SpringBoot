@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>Redisson-Lock</module>
+        <module>RedisDbSelect</module>
     </modules>
 
     <dependencies>
