@@ -15,6 +15,7 @@
         <module>Java-ES</module>
         <module>SpringBoot-RestClient-ES</module>
         <module>SpringBoot-ES-Data</module>
+        <module>SpringBoot-ELK</module>
     </modules>
 
 
