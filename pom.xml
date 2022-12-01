@@ -18,6 +18,7 @@
         <module>Sharding-Jdbc</module>
         <module>ElasticSearch</module>
         <module>Distributed-Lock</module>
+        <module>webFlux</module>
     </modules>
     <packaging>pom</packaging>
 
