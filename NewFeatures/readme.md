@@ -7,3 +7,5 @@
 ## 方法引用
 
 ## Stream流的操作
+
+## generics泛型

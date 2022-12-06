@@ -17,6 +17,7 @@
         <module>MethodReference</module>
         <module>Stream</module>
         <module>Date</module>
+        <module>Generics</module>
     </modules>
 
     <dependencies>
