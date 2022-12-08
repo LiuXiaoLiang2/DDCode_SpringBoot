@@ -4,6 +4,7 @@ package com.ddcode.generics;
  * 泛型的类型通配符
  */
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,9 +43,29 @@ public class Demo_6_Generics_Wildcard_Up {
     }
 
 
+    public static void testWildcardUp(){
+        List<Animal> animalList = new ArrayList<>();
+        List<Cat> catArrayList = new ArrayList<>();
+        List<MiniCat> miniCatList = new ArrayList<>();
+
+        //报错, 只能传Cat或者Cat的子类
+        //showAnimal(animalList);
+        showAnimal(catArrayList);
+        showAnimal(miniCatList);
+    }
 
 
-    public static void showAnimal(List<? extends Animal> list){
+    /**
+     * 泛型通配符上限，传入的list的类型，只能是Cat或者Cat的子类
+     * @param list
+     */
+    public static void showAnimal(List<? extends Cat> list){
+//        list.add(new Animal());
+//        list.add(new Cat());
+//        list.add(new MiniCat());
+        for (int i = 0; i < list.size(); i++) {
+            Cat cat = list.get(i);
+        }
         System.out.println(list);
     }
 }
