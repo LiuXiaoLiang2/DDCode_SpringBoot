@@ -4,7 +4,9 @@ import lombok.extern.slf4j.Slf4j;
 
 import javax.swing.*;
 import java.text.DecimalFormat;
+import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 /**
  * 定义一个接口实现金额格式化, 也是一个函数式接口
@@ -52,7 +54,9 @@ public class Demo_5_Function {
 
     public static void main(String[] args) {
         //testFunctionAndThen();
-        testFunctionCompose();
+//        testFunctionCompose();
+//        testPredicate();
+        testConsumer();
     }
 
     public static void testFunction(){
@@ -70,9 +74,6 @@ public class Demo_5_Function {
     public static void testFunctionAndThen(){
         Function f1 = i -> i + ",f1,";
         Function f2 = i -> i + ",f2,";
-        Function result = f1.andThen(f2);
-        log.info("结果 {}",result.apply(1) );
-
         Function f3 = i -> i + ",f3,";
         Function result3 = f1.andThen(f2).andThen(f3);
         log.info("结果 {}",result3.apply(1) );
@@ -81,11 +82,29 @@ public class Demo_5_Function {
     public static void testFunctionCompose(){
         Function f1 = i -> i + ",f1,";
         Function f2 = i -> i + ",f2,";
-        Function result = f1.compose(f2);
-        log.info("结果 {}",result.apply(1) );
-
         Function f3 = i -> i + ",f3,";
         Function result3 = f1.compose(f2).compose(f3);
         log.info("结果 {}",result3.apply(1) );
+    }
+
+    /**
+     * 测试断言
+     */
+    public static void testPredicate(){
+        //指定泛型类型
+        Predicate<String> predicate = i->i.equals("lucy");
+        boolean lucy = predicate.test("lucy");
+        boolean jack = predicate.test("jack");
+        System.out.println(lucy);
+        System.out.println(jack);;
+    }
+
+    /**
+     * 测试消费函数
+     */
+    public static void testConsumer(){
+
+        Consumer<Integer> consumer = i -> System.out.println(i+1);
+        consumer.accept(10);
     }
 }
