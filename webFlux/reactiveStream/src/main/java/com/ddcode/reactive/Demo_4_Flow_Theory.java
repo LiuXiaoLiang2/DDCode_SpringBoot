@@ -2,16 +2,17 @@ package com.ddcode.reactive;
 
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.concurrent.Flow;
-import java.util.concurrent.Flow.*;
+import java.util.concurrent.Flow.Subscriber;
+import java.util.concurrent.Flow.Subscription;
 import java.util.concurrent.SubmissionPublisher;
 import java.util.concurrent.TimeUnit;
 
 /**
  * flow的简单使用
+ * 验证发布者的submit的阻塞的
  */
 @Slf4j(topic = "c.Demo_2_Flow")
-public class Demo_2_Flow {
+public class Demo_4_Flow_Theory {
 
     public static void main(String[] args) throws InterruptedException {
         //定义创建发布者，发布的数据类型是Integer
@@ -42,6 +43,13 @@ public class Demo_2_Flow {
                 //接收到一个数据，处理
                 log.info("订阅者, 接收到一个数据 {}", item);
 
+                //处理数据需要1s
+
+                try {
+                    TimeUnit.SECONDS.sleep(3);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 //处理完再次调用request请求一个数据
                 subscription.request(1);
 
@@ -71,20 +79,10 @@ public class Demo_2_Flow {
         log.info("发布者, 开始发布消息");
 
         //生产数据并发布
-        Integer data = 111;
-        log.info("发布者, 发布消息 {}", data);
-        publisher.submit(data);
-        TimeUnit.MILLISECONDS.sleep(10);
-
-        data = 123;
-        log.info("发布者, 发布消息 {}", data);
-        publisher.submit(data);
-        TimeUnit.MILLISECONDS.sleep(10);
-
-        data = 456;
-        log.info("发布者, 发布消息 {}", data);
-        publisher.submit(data);
-        TimeUnit.MILLISECONDS.sleep(10);
+        for (int i = 0; i < 500; i++) {
+            log.info("发布者, 发布数据 {}", i);
+            publisher.submit(i);
+        }
 
         //结束后关闭发布者
         //正式环境应该放在finally或者使用 try-resource确保关闭
@@ -92,7 +90,7 @@ public class Demo_2_Flow {
         publisher.close();
 
         //主线程延迟停止，否则数据还未消费就退出
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(100000);
 
     }
 }
