@@ -15,7 +15,6 @@
         <module>lambda</module>
         <module>reactiveStream</module>
         <module>syncWeb</module>
-        <module>AsyncWeb</module>
     </modules>
 
 
