@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!--引入thymeleaf的命名空间,作用:下面写 th:text 可以自动提示-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎页面</title>
+    <!--导入webjar中的Bootstrap静态资源-->
+    <!--这里的导入语法：首先使用 @{} 表示从依赖中的jar中找,打开依赖的webjars可以看到,文件都放到了resources下,所以引入的话,直接resourc后面的文件加复制即可-->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.css}"/>
+</head>
+<body>
+<div class="container">
+    提示信息index,使用SSE
+    <script type="text/javascript">
+        alert("1");
+        var eventSource = new EventSource("/flux/get3");
+        // eventSource.onmessage = function(e) {
+        //     console.log(e);
+        //     console.log("1111----" + e.data)
+        // }
+        eventSource.addEventListener("message",function (e) {
+            console.log("2222----" + e.data)
+            var comment = JSON.parse(e.data);
+            if(comment.id == 4){
+                alert("2");
+                eventSource.close();
+            }
+        })
+    </script>
+</div>
+</body>
+</html>
