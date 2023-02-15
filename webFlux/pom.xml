@@ -16,6 +16,7 @@
         <module>reactiveStream</module>
         <module>syncWeb</module>
         <module>monoFlux</module>
+        <module>SpringWebFlux</module>
     </modules>
 
 
