@@ -18,6 +18,7 @@
         //     console.log(e);
         //     console.log("1111----" + e.data)
         // }
+        // 默认就可以使用 message 这个事件监听，message 是固定名称
         eventSource.addEventListener("message",function (e) {
             console.log("2222----" + e.data)
             var comment = JSON.parse(e.data);

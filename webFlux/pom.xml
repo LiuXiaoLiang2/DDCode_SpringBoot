@@ -15,7 +15,7 @@
         <module>lambda</module>
         <module>reactiveStream</module>
         <module>syncWeb</module>
-        <module>Spring-WebFlux</module>
+        <module>monoFlux</module>
     </modules>
 
 

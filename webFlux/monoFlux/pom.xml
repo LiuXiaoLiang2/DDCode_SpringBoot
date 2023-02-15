@@ -9,14 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>Spring-WebFlux</artifactId>
-
-    <properties>
-        <!-- 指定maven.compiler.plugin 配置版本，解决编译问题 -->
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-    </properties>
-
+    <artifactId>monoFlux</artifactId>
 
     <dependencies>
         <!--boot web actuator-->
@@ -65,34 +58,5 @@
             <version>4.6.0</version>
         </dependency>
     </dependencies>
-
-    <!--增加maven打包插件, 这样打出的jar可以直接使用 java -jar 命令运行, 这个在使用命令行参数作为入参时候, 很重要-->
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                            <goal>build-info</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!-- 指定maven.compiler.plugin 配置版本，解决编译问题 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>
