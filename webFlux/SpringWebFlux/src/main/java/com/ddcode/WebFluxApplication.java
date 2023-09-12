@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRep
 
 @SpringBootApplication
 //开启mongo注解
+//
 @EnableReactiveMongoRepositories
 public class WebFluxApplication {
     public static void main(String[] args) {
