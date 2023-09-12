@@ -1,6 +1,7 @@
 package com.ddcode.stream;
 
 import com.ddcode.po.User;
+import com.google.errorprone.annotations.Var;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
@@ -47,6 +48,8 @@ public class Demo_2_Stream_Create {
         User[] users = {user1, user2};
 
         Stream<User> userStream = Arrays.stream(users);
+
+        Stream<User> stream = Stream.of(user1, user2);
 
     }
 

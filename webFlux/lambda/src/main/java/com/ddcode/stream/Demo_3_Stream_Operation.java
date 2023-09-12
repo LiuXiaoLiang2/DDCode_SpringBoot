@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -14,11 +15,6 @@ import java.util.stream.Stream;
  */
 @Slf4j(topic = "c.Demo_3_Stream_Operation")
 public class Demo_3_Stream_Operation {
-
-    public static void main(String[] args) {
-        flatMapMethod1();
-        flatMapMethod2();
-    }
 
     /**
      * 操作map方法
@@ -112,12 +108,20 @@ public class Demo_3_Stream_Operation {
             return w.split(" ");
 
         });
-        stream.forEach(i->
-        {
-            for (int i1 = 0; i1 < i.length; i1++) {
-                log.info("flatMapMethod {}", i1);
-            }
-        });
+        log.info("flatMapMethod count {}", stream.count());
+
+    }
+
+    public static void flatMapMethod3(){
+        List<String> words = Arrays.asList("h e l l o", "w o r d");
+        Stream<String> stream = words.stream().flatMap(
+                word -> {
+                    log.info("word {}", word);
+                    return Stream.of(word.split(" "));
+                }
+        );
+
+        log.info("flatMapMethod3 count {}", stream.count());
     }
 
     public static void flatMapMethod2(){
@@ -130,5 +134,80 @@ public class Demo_3_Stream_Operation {
         );
         log.info("-------------");
         stream.forEach(i->log.info("flatMapMethod2 {}", i));
+    }
+
+
+    public static void flatMapMethod4(){
+        System.out.println();
+        String[] words = new String[]{"Hello","World"};
+        List<String[]> a = Arrays.stream(words)
+                .map(word -> word.split(""))
+                .distinct()
+                .collect(Collectors.toList());
+
+        a.forEach(System.out::print);
+    }
+
+
+    public static void flatMapMethod5(){
+        System.out.println();
+        String[] words = new String[]{"Hello","World"};
+        Stream<String> stream = Arrays.stream(words);
+        Stream<String[]> stream1 = stream.map(word -> word.split(""));
+        Stream<String> stream2 = stream1.flatMap(wordsArray -> Arrays.stream(wordsArray));
+        Stream<String> distinct = stream2.distinct();
+        log.info("-------------");
+        distinct.forEach(System.out::print);
+    }
+
+
+    public static void flatMapMethod6(){
+        System.out.println();
+        String[] words = new String[]{"Hello","World"};
+        Stream<String> stream = Arrays.stream(words);
+        Stream<String[]> stream1 = stream.map(word -> word.split(""));
+        Stream<String> stream2 = stream1.flatMap(wordsArray -> Stream.of(wordsArray));
+        //Stream<String> distinct = stream2.distinct();
+        log.info("-------------");
+        stream2.forEach(System.out::print);
+    }
+
+
+    public static void flatMapMethod7(){
+        System.out.println();
+        String[] words = new String[]{"Hello","World"};
+        List<String> collect = Stream.of(words).flatMap(word -> Stream.of(word.split(""))).distinct().collect(Collectors.toList());
+        System.out.println(collect);
+    }
+
+    /**
+     * 遍历
+     */
+    public static void foreach(){
+        System.out.println();
+        String[] words = new String[]{"Hello","World"};
+        Stream.of(words).flatMap(word -> Stream.of(word.split(""))).forEach(System.out::print);
+    }
+
+    /**
+     * 将Stream转化成集合
+     */
+    public static void collectSet(){
+        System.out.println();
+        String[] words = new String[]{"Hello","World"};
+        Set<String> set = Stream.of(words).flatMap(word -> Stream.of(word.split(""))).collect(Collectors.toSet());
+    }
+
+
+    public static void collectList(){
+        System.out.println();
+        String[] words = new String[]{"Hello","World"};
+        List<String> collect = Stream.of(words).flatMap(word -> Stream.of(word.split(""))).collect(Collectors.toList());
+
+    }
+
+
+    public static void main(String[] args) {
+        foreach();
     }
 }
